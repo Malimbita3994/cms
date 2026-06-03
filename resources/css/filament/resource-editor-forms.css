@@ -1,0 +1,29 @@
+/**
+ * Portfolio resource create/edit — full-width form (Filament default is 2 columns = ~50% card).
+ */
+
+.fi-resource-career-journey .fi-page,
+.fi-resource-career-journey.home-editor-page .fi-page {
+    max-width: none !important;
+    width: 100% !important;
+}
+
+.fi-resource-career-journey .fi-page-content .fi-sc-has-gap {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.fi-resource-career-journey .fi-page-content .fi-grid-col {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.fi-resource-career-journey .fi-section,
+.fi-resource-career-journey .fi-sc-section,
+.fi-resource-career-journey .home-editor-card {
+    width: 100% !important;
+    max-width: none !important;
+}

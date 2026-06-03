@@ -1,0 +1,569 @@
+/**
+ * Home content editor — premium CMS form layout
+ */
+
+.home-editor-page .fi-page {
+    max-width: 72rem;
+    margin-inline: auto;
+}
+
+.fi-resource-career-journey.home-editor-page .fi-page {
+    max-width: none;
+    width: 100%;
+}
+
+.home-editor-page .fi-page > .fi-page-main {
+    padding-bottom: 5rem;
+}
+
+.home-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.home-editor__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
+    padding-bottom: 0.25rem;
+}
+
+.home-editor__header-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
+    flex: 1 1 100%;
+    min-width: 0;
+}
+
+.home-editor__header-main {
+    flex: 1 1 16rem;
+    min-width: 0;
+}
+
+.home-editor__header-actions {
+    flex-shrink: 0;
+}
+
+.home-editor__breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.35rem;
+    font-size: 0.78rem;
+    color: var(--cms-muted, #8b919e);
+}
+
+.home-editor__breadcrumb-link {
+    color: var(--cms-muted);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.home-editor__breadcrumb-link:hover {
+    color: #e5e7eb;
+}
+
+.home-editor__breadcrumb-sep {
+    opacity: 0.55;
+    user-select: none;
+}
+
+.home-editor__breadcrumb-current {
+    color: #d1d5db;
+}
+
+.home-editor__title {
+    margin: 0;
+    font-size: 1.85rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    line-height: 1.15;
+}
+
+.home-editor__lead {
+    margin: 0.65rem 0 0;
+    max-width: 42rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--cms-muted, #8b919e);
+}
+
+.home-editor__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.home-editor__sections {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contact page: gap between “Public contact details” and “Inbox” cards */
+.home-editor-page .home-editor__form .home-editor__sections:has(.contact-inbox) {
+    gap: 1.5rem;
+}
+
+.contact-inbox {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.home-editor-page .contact-inbox-card {
+    margin-top: 0;
+    padding: 1.35rem 1.5rem 1.5rem !important;
+}
+
+.home-editor-page .contact-inbox-card .fi-ta-ctn,
+.home-editor-page .contact-inbox-card .fi-ta {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.home-editor-page .contact-inbox-card .fi-ta-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contact-inbox .fi-ta-header-heading {
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    color: #f4f4f5 !important;
+}
+
+.home-editor-page .contact-inbox-card .fi-ta-header-description {
+    margin-top: 0.25rem !important;
+    font-size: 0.8rem !important;
+    color: var(--cms-muted, #a1a1aa) !important;
+}
+
+/* —— Main card (left / right columns) —— */
+.home-editor-page .home-editor-card--main {
+    padding: 1.5rem 1.65rem 1.65rem !important;
+}
+
+.home-editor-page .home-editor-card--main > .fi-section-header {
+    display: none !important;
+}
+
+/* Stacked portfolio forms: image, then rich text below (never side-by-side) */
+.home-editor-page .portfolio-stacked-editor-form .fi-sc-grid,
+.home-editor-page .portfolio-stacked-editor-form .fi-fo-field-wrp {
+    grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.home-editor-page .portfolio-stacked-editor-form .fi-fo-field-wrp {
+    grid-column: 1 / -1 !important;
+}
+
+.home-editor-page .portfolio-stacked-editor-form.fi-section,
+.home-editor-page .portfolio-stacked-editor-form {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.home-editor-page .home-editor__sections > .fi-sc-component-ctn,
+.home-editor-page .home-editor__sections .fi-fo-component-ctn {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.home-editor-page .home-editor-card--contact-details > .fi-section-header {
+    display: flex !important;
+    margin-bottom: 1.1rem !important;
+    padding-bottom: 0.85rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.home-editor-page .home-editor-columns {
+    align-items: start;
+    gap: 1.5rem 2rem !important;
+}
+
+.home-editor-page .home-editor-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    min-width: 0;
+}
+
+@media (min-width: 1280px) {
+    .home-editor-page .home-editor-col--left {
+        padding-right: 1rem;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .home-editor-page .home-editor-col--right {
+        padding-left: 0.25rem;
+    }
+}
+
+.home-editor-page .home-editor-field--full {
+    margin-top: 0.35rem;
+    padding-top: 1.35rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* —— Section cards —— */
+.home-editor-page .home-editor-card {
+    border: 1px solid var(--cms-border, #252a35) !important;
+    border-radius: 1rem !important;
+    background: linear-gradient(180deg, rgba(26, 30, 40, 0.95), rgba(20, 23, 31, 0.98)) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+    padding: 1.35rem 1.5rem 1.5rem !important;
+}
+
+.home-editor-page .home-editor-card > .fi-section-header {
+    margin-bottom: 1.1rem !important;
+    padding-bottom: 0.85rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.home-editor-page .home-editor-card .fi-section-header-heading {
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    color: #f4f4f5 !important;
+}
+
+.home-editor-page .home-editor-card .fi-section-header-description {
+    margin-top: 0.25rem !important;
+    font-size: 0.8rem !important;
+    color: var(--cms-muted) !important;
+}
+
+.home-editor-page .home-editor-card .fi-section-header-icon-ctn {
+    color: var(--cms-accent) !important;
+}
+
+/* —— Inputs —— */
+.home-editor-page .fi-input-wrp,
+.home-editor-page .fi-fo-textarea .fi-input-wrp {
+    border-radius: 0.75rem !important;
+    border-color: var(--cms-border) !important;
+    background: rgba(12, 14, 18, 0.85) !important;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-editor-page .fi-input-wrp:focus-within,
+.home-editor-page .fi-fo-textarea:focus-within .fi-input-wrp {
+    border-color: rgba(245, 158, 11, 0.55) !important;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.12) !important;
+}
+
+.home-editor-page .fi-input-wrp input,
+.home-editor-page .fi-input-wrp textarea {
+    color: #f4f4f5 !important;
+    font-size: 0.9rem !important;
+}
+
+.home-editor-page .fi-input-wrp input::placeholder,
+.home-editor-page .fi-input-wrp textarea::placeholder {
+    color: #6b7280 !important;
+}
+
+.home-editor-page .fi-fo-field-wrp-label {
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+    color: #e5e7eb !important;
+}
+
+.home-editor-page .fi-fo-field-wrp-helper-text {
+    font-size: 0.75rem !important;
+    color: var(--cms-muted) !important;
+}
+
+/* —— File upload —— */
+.home-editor-page .fi-fo-file-upload .filepond--root {
+    border-radius: 0.85rem !important;
+    background: rgba(8, 10, 14, 0.6) !important;
+    border: 1px dashed rgba(255, 255, 255, 0.14) !important;
+    min-height: 11rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.home-editor-page .fi-fo-file-upload .filepond--root:hover {
+    border-color: rgba(245, 158, 11, 0.35) !important;
+    background: rgba(245, 158, 11, 0.04) !important;
+}
+
+.home-editor-page .filepond--panel-root {
+    background: transparent !important;
+}
+
+.home-editor-page .filepond--drop-label {
+    color: var(--cms-muted) !important;
+    font-size: 0.85rem !important;
+}
+
+.home-editor-page .filepond--drop-label label {
+    cursor: pointer;
+}
+
+.home-editor-page .filepond--item-panel {
+    border-radius: 0.65rem !important;
+    background: var(--cms-surface-2) !important;
+}
+
+.home-editor-page .fi-fo-file-upload .filepond--file {
+    color: #e5e7eb;
+}
+
+.home-editor-page .fi-fo-file-upload .filepond--file-info {
+    color: #e5e7eb !important;
+}
+
+.home-editor-page .fi-fo-file-upload .filepond--file-info-main {
+    color: #f4f4f5 !important;
+}
+
+.home-editor-page .fi-fo-file-upload .filepond--file-action-button {
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+}
+
+.home-editor-page .fi-fo-file-upload .filepond--action-edit-item,
+.home-editor-page .fi-fo-file-upload .filepond--action-remove-item,
+.home-editor-page .fi-fo-file-upload .filepond--action-revert-item {
+    background: rgba(12, 14, 18, 0.88) !important;
+    color: #fff !important;
+}
+
+.home-editor-page .fi-fo-file-upload .filepond--action-edit-item:hover,
+.home-editor-page .fi-fo-file-upload .filepond--action-remove-item:hover {
+    background: rgba(245, 158, 11, 0.9) !important;
+}
+
+.home-editor-page .fi-fo-file-upload .filepond--label-action {
+    color: var(--cms-accent) !important;
+    font-weight: 500;
+}
+
+/* —— Repeater (core focus items) —— */
+.home-editor-page .fi-fo-repeater {
+    gap: 0.65rem !important;
+}
+
+.home-editor-page .fi-fo-repeater .fi-fo-repeater-item {
+    border: 1px solid var(--cms-border) !important;
+    border-radius: 0.75rem !important;
+    background: rgba(12, 14, 18, 0.7) !important;
+    box-shadow: none !important;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.home-editor-page .fi-fo-repeater .fi-fo-repeater-item:hover {
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.home-editor-page .home-editor-repeater .fi-fo-repeater-item-header {
+    padding: 0.45rem 0.5rem !important;
+    min-height: auto !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.home-editor-page .home-editor-repeater .fi-fo-repeater-item-header-end-actions .fi-btn {
+    color: #9ca3af !important;
+}
+
+.home-editor-page .home-editor-repeater .fi-fo-repeater-item-header-end-actions .fi-btn:hover {
+    color: #f87171 !important;
+}
+
+.home-editor-page .home-editor-repeater .fi-fo-repeater-item-content {
+    padding: 0.75rem !important;
+}
+
+.home-editor-page .home-editor-repeater .fi-fo-repeater-item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.home-editor-page .home-editor-repeater .fi-fo-repeater-item-content > .fi-sc-component-ctn {
+    width: 100%;
+}
+
+.home-editor-page .fi-fo-repeater .fi-fo-rich-editor .tiptap,
+.home-editor-page .fi-fo-repeater .fi-fo-rich-editor .ProseMirror {
+    min-height: 7.5rem;
+}
+
+.home-editor-page .fi-fo-repeater .fi-fo-repeater-add {
+    margin-top: 0.35rem;
+}
+
+.home-editor-page .fi-fo-repeater .fi-fo-repeater-add .fi-btn {
+    border-radius: 0.55rem !important;
+    border: 1px dashed rgba(245, 158, 11, 0.45) !important;
+    background: rgba(245, 158, 11, 0.06) !important;
+    color: var(--cms-accent) !important;
+    font-weight: 500 !important;
+}
+
+.home-editor-page .fi-fo-repeater .fi-fo-repeater-add .fi-btn:hover {
+    background: rgba(245, 158, 11, 0.12) !important;
+}
+
+/* —— Footer actions —— */
+.home-editor__footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    padding: 1rem 0 0.25rem;
+    border-top: 1px solid var(--cms-border);
+    background: linear-gradient(180deg, transparent, var(--cms-bg, #0c0e12) 28%);
+}
+
+.home-editor-page .home-editor__btn-cancel {
+    border-radius: 0.65rem !important;
+    border: 1px solid var(--cms-border) !important;
+    background: var(--cms-surface) !important;
+    color: #e5e7eb !important;
+    font-weight: 500 !important;
+    padding-inline: 1.15rem !important;
+}
+
+.home-editor-page .home-editor__btn-cancel:hover {
+    background: var(--cms-surface-2) !important;
+    border-color: #3d4556 !important;
+}
+
+.home-editor-page .home-editor__btn-save {
+    border-radius: 0.65rem !important;
+    background: linear-gradient(90deg, var(--cms-accent-2, #ea580c), var(--cms-accent, #f59e0b)) !important;
+    border: none !important;
+    color: #1c1917 !important;
+    font-weight: 600 !important;
+    padding-inline: 1.35rem !important;
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.25) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.home-editor-page .home-editor__btn-save:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(245, 158, 11, 0.35) !important;
+}
+
+/* —— TipTap / Rich editor —— */
+.home-editor-page .fi-fo-rich-editor .tiptap,
+.home-editor-page .fi-fo-rich-editor .ProseMirror {
+    min-height: 10rem;
+    padding: 0.85rem 1rem;
+    color: #f4f4f5;
+    font-size: 0.9rem;
+    line-height: 1.65;
+}
+
+.home-editor-page .fi-fo-rich-editor .tiptap:focus {
+    outline: none;
+}
+
+.home-editor-page .fi-fo-rich-editor .tiptap p.is-editor-empty:first-child::before {
+    color: #6b7280;
+}
+
+.home-editor-page .fi-fo-rich-editor {
+    border-radius: 0.75rem !important;
+    border: 1px solid var(--cms-border) !important;
+    background: rgba(12, 14, 18, 0.85) !important;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-editor-page .fi-fo-rich-editor:focus-within {
+    border-color: rgba(245, 158, 11, 0.55) !important;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.12) !important;
+}
+
+.home-editor-page .fi-fo-rich-editor .fi-fo-rich-editor-toolbar {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    background: rgba(8, 10, 14, 0.5) !important;
+    padding: 0.35rem 0.5rem !important;
+    flex-wrap: wrap !important;
+    row-gap: 0.35rem !important;
+}
+
+.home-editor-page .portfolio-stacked-editor-form .fi-fo-rich-editor .fi-fo-rich-editor-toolbar {
+    flex-wrap: wrap !important;
+}
+
+.home-editor-page .fi-fo-rich-editor .fi-fo-rich-editor-toolbar .fi-btn {
+    border-radius: 0.45rem !important;
+    color: #d1d5db !important;
+}
+
+.home-editor-page .fi-fo-rich-editor .fi-fo-rich-editor-toolbar .fi-btn:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: #fff !important;
+}
+
+@media (max-width: 1279px) {
+    .home-editor-page .home-editor-col--left {
+        padding-bottom: 0.25rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+}
+
+@media (max-width: 1023px) {
+    .home-editor-page .fi-page {
+        padding-inline: 0.5rem;
+    }
+
+    .home-editor__header {
+        flex-direction: column;
+    }
+
+    .home-editor__breadcrumbs {
+        margin-top: 0;
+    }
+
+    .home-editor__footer {
+        padding-bottom: 1rem;
+    }
+}
+
+.home-editor__form--view .fi-fo-field,
+.home-editor__form--view .fi-input-wrp,
+.home-editor__form--view .fi-select-input,
+.home-editor__form--view .fi-fo-rich-editor {
+    pointer-events: none;
+}
+
+.home-editor__form--view .fi-fo-field {
+    opacity: 0.95;
+}
+
+.portfolio-swal-popup {
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45) !important;
+}
+
+.portfolio-swal-title {
+    font-weight: 600 !important;
+}
+
+.portfolio-swal-text {
+    color: #a1a1aa !important;
+}

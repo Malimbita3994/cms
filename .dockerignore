@@ -1,0 +1,17 @@
+node_modules
+vendor
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+.git
+.env
+.env.*
+!.env.production.example
+!.env.example
+bootstrap/cache/*.php
+tests
+.phpunit.result.cache
+rr
+rr.exe
+.DS_Store

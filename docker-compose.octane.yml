@@ -1,0 +1,32 @@
+# Laravel Octane (FrankenPHP) — use on Windows/macOS/Linux when native Octane is unavailable.
+# Start: docker compose -f docker-compose.octane.yml up --build
+# CMS: http://127.0.0.1:8000
+
+services:
+  cms-octane:
+    build:
+      context: .
+      dockerfile: docker/octane/Dockerfile
+    container_name: portfolio-cms-octane
+    ports:
+      - "${OCTANE_PORT:-8000}:8000"
+    volumes:
+      - .:/app
+      - octane-composer:/root/.composer
+    env_file:
+      - .env
+    environment:
+      OCTANE_SERVER: frankenphp
+      OCTANE_HOST: 0.0.0.0
+      OCTANE_PORT: 8000
+      OCTANE_WORKERS: ${OCTANE_WORKERS:-4}
+      OCTANE_MAX_REQUESTS: ${OCTANE_MAX_REQUESTS:-500}
+      # Reach MySQL on the Windows/macOS host from inside the container
+      DB_HOST: ${DB_HOST:-host.docker.internal}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    working_dir: /app
+    restart: unless-stopped
+
+volumes:
+  octane-composer:

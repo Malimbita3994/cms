@@ -1,0 +1,719 @@
+/* Malimbita — enterprise auth (dark premium, no glassmorphism) */
+
+@import url('https://fonts.bunny.net/css?family=ibm-plex-sans:400,500,600,700&display=swap');
+
+:root {
+    --auth-bg: #07080a;
+    --auth-bg-panel: #0c0d10;
+    --auth-surface: #14161c;
+    --auth-surface-hover: #181b22;
+    --auth-border: #252a35;
+    --auth-border-strong: #323845;
+    --auth-text: #f4f4f5;
+    --auth-muted: #8b919e;
+    --auth-muted-dim: #5c6370;
+    --auth-accent: #f59e0b;
+    --auth-accent-mid: #ea580c;
+    --auth-accent-deep: #c2410c;
+    --auth-input-bg: #1a1d24;
+    --auth-gradient: linear-gradient(90deg, #c2410c 0%, #ea580c 38%, #f59e0b 72%, #fbbf24 100%);
+    --auth-gradient-hover: linear-gradient(90deg, #9a3412 0%, #c2410c 38%, #ea580c 72%, #f59e0b 100%);
+    --auth-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+    --auth-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+    --auth-shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.55);
+    --auth-focus: 0 0 0 3px rgba(212, 165, 116, 0.22);
+    --auth-radius: 14px;
+    --auth-radius-sm: 10px;
+}
+
+/* —— Shell —— */
+.mb-auth-shell {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+    background: var(--auth-bg);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* —— Left brand panel —— */
+.mb-auth-brand {
+    display: none;
+    position: relative;
+    overflow: hidden;
+    background: var(--auth-bg-panel);
+    color: var(--auth-text);
+}
+
+.mb-auth-brand-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 70% 50% at 8% 0%, rgba(212, 165, 116, 0.14), transparent 55%),
+        radial-gradient(ellipse 55% 45% at 95% 90%, rgba(154, 107, 69, 0.1), transparent 50%),
+        linear-gradient(168deg, #0a0b0e 0%, #0e1016 42%, #121018 100%);
+}
+
+.mb-auth-brand-glow::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 40%;
+    background: linear-gradient(0deg, rgba(7, 8, 10, 0.85), transparent);
+}
+
+.mb-auth-brand-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    padding: clamp(2rem, 5vw, 3rem) clamp(1.75rem, 4vw, 2.75rem);
+    max-width: 34rem;
+}
+
+.mb-auth-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--auth-text);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.mb-auth-logo:hover {
+    opacity: 0.88;
+}
+
+.mb-auth-mark {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    display: grid;
+    place-items: center;
+    background: var(--auth-gradient);
+    box-shadow: 0 6px 16px rgba(154, 107, 69, 0.3);
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #1a1208;
+    flex-shrink: 0;
+}
+
+.mb-auth-tag {
+    margin: 1.75rem 0 0;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--auth-accent);
+}
+
+.mb-auth-title {
+    margin: 0.65rem 0 0;
+    font-size: clamp(1.55rem, 2.8vw, 2rem);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--auth-text);
+}
+
+.mb-auth-lead {
+    margin: 0.85rem 0 0;
+    color: var(--auth-muted);
+    line-height: 1.65;
+    font-size: 0.94rem;
+    max-width: 28rem;
+}
+
+/* —— Stat widgets (solid surfaces, no blur) —— */
+.mb-auth-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mb-auth-stat-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1rem 1rem 1.05rem;
+    border-radius: var(--auth-radius-sm);
+    background: var(--auth-surface);
+    border: 1px solid var(--auth-border);
+    box-shadow: var(--auth-shadow-sm), var(--auth-shadow-md);
+    overflow: hidden;
+    transition:
+        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        background 0.22s ease;
+}
+
+.mb-auth-stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--auth-gradient);
+    opacity: 0.55;
+    transition: opacity 0.22s ease;
+}
+
+.mb-auth-stat-card:hover {
+    transform: translateY(-3px);
+    background: var(--auth-surface-hover);
+    border-color: var(--auth-border-strong);
+    box-shadow:
+        var(--auth-shadow-sm),
+        0 14px 32px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(212, 165, 116, 0.08);
+}
+
+.mb-auth-stat-card:hover::before {
+    opacity: 1;
+}
+
+.mb-auth-stat-icon {
+    flex-shrink: 0;
+    width: 2.35rem;
+    height: 2.35rem;
+    display: grid;
+    place-items: center;
+    border-radius: 0.55rem;
+    background: #1e2129;
+    border: 1px solid var(--auth-border);
+    color: var(--auth-accent);
+    transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+}
+
+.mb-auth-stat-card:hover .mb-auth-stat-icon {
+    background: rgba(212, 165, 116, 0.1);
+    border-color: rgba(212, 165, 116, 0.25);
+    color: #f0d4a8;
+}
+
+.mb-auth-stat-icon svg {
+    width: 1rem;
+    height: 1rem;
+    display: block;
+}
+
+.mb-auth-stat-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.mb-auth-stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--auth-text);
+    font-variant-numeric: tabular-nums;
+}
+
+.mb-auth-stat-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--auth-muted);
+}
+
+.mb-auth-stat-card--projects:hover .mb-auth-stat-value { color: #fafafa; }
+.mb-auth-stat-card--services .mb-auth-stat-icon { color: #c9b896; }
+.mb-auth-stat-card--case-studies .mb-auth-stat-icon { color: #d4a574; }
+.mb-auth-stat-card--insights .mb-auth-stat-icon { color: #e8c9a0; }
+
+.mb-auth-foot {
+    margin: auto 0 0;
+    padding-top: 2rem;
+    font-size: 0.75rem;
+    color: var(--auth-muted-dim);
+}
+
+/* —— Right login panel —— */
+.mb-auth-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2.5rem);
+    background: var(--auth-bg);
+    position: relative;
+}
+
+.mb-auth-main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212, 165, 116, 0.06), transparent 60%);
+}
+
+.mb-auth-form-wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 26rem;
+}
+
+.mb-auth-back {
+    position: relative;
+    z-index: 1;
+    margin: 1.5rem 0 0;
+    text-align: center;
+    font-size: 0.84rem;
+}
+
+.mb-auth-back a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--auth-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.mb-auth-back a:hover {
+    color: var(--auth-accent);
+}
+
+/* —— Filament login card —— */
+.mb-auth-main .fi-simple-layout {
+    min-height: auto;
+    background: transparent;
+}
+
+.mb-auth-main .fi-simple-main-ctn {
+    padding: 0;
+}
+
+.mb-auth-main .fi-simple-main {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.mb-auth-main .fi-simple-page {
+    padding: 0;
+}
+
+.mb-auth-main .fi-simple-page-content {
+    border: 1px solid var(--auth-border);
+    border-radius: var(--auth-radius);
+    background: var(--auth-surface);
+    padding: clamp(1.75rem, 4vw, 2.25rem) clamp(1.5rem, 3vw, 2rem);
+    box-shadow: var(--auth-shadow-lg);
+}
+
+.mb-auth-main .fi-simple-header {
+    margin-bottom: 1.75rem;
+    text-align: left;
+}
+
+.mb-auth-main .fi-simple-header-heading {
+    font-size: 1.6rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.035em !important;
+    color: var(--auth-text) !important;
+    line-height: 1.2 !important;
+}
+
+.mb-auth-main .fi-simple-header-subheading {
+    margin-top: 0.5rem !important;
+    color: #b8bec8 !important;
+    font-size: 0.9rem !important;
+    line-height: 1.55 !important;
+    max-width: 22rem;
+}
+
+/* Form spacing & readable text (Filament field API) */
+.mb-auth-shell.dark .mb-auth-main,
+.mb-auth-main {
+    color: var(--auth-text);
+}
+
+.mb-auth-main form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.mb-auth-main .fi-fo-field {
+    gap: 0.5rem !important;
+}
+
+.mb-auth-main .fi-fo-field-label-content,
+.mb-auth-main .fi-fo-field-wrp-label,
+.mb-auth-main label.fi-fo-field-label {
+    font-size: 0.875rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    letter-spacing: 0.01em;
+}
+
+.mb-auth-main .fi-fo-field-label-required-mark {
+    color: var(--auth-accent) !important;
+    font-weight: 700 !important;
+}
+
+/* Remember me + forgot password row */
+.mb-auth-actions-row {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: center !important;
+    gap: 0.75rem 1rem !important;
+    margin-top: 0.15rem !important;
+}
+
+.mb-auth-actions-row > .fi-sc-component:last-child {
+    justify-self: end;
+}
+
+.mb-auth-forgot {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--auth-accent) !important;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s ease;
+}
+
+.mb-auth-forgot:hover {
+    color: #fbbf24 !important;
+}
+
+.mb-auth-forgot-chevron {
+    font-size: 1.1em;
+    line-height: 1;
+    opacity: 0.9;
+}
+
+/* Inputs — one flat surface, no Filament ring / inset / inner box */
+.mb-auth-shell .fi-input-wrp,
+.mb-auth-shell .fi-fo-text-input.fi-input-wrp {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    min-height: 2.75rem !important;
+    border-radius: var(--auth-radius-sm) !important;
+    border: 1px solid var(--auth-border) !important;
+    background-color: var(--auth-input-bg) !important;
+    background-image: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    --tw-shadow: 0 0 #0000 !important;
+    --tw-ring-shadow: 0 0 #0000 !important;
+    --tw-ring-offset-shadow: 0 0 #0000 !important;
+    --tw-inset-shadow: 0 0 #0000 !important;
+    --tw-inset-ring-shadow: 0 0 #0000 !important;
+    --tw-ring-color: transparent !important;
+    --tw-ring-offset-width: 0px !important;
+    overflow: hidden !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease !important;
+}
+
+.mb-auth-shell .fi-input-wrp:not(.fi-disabled):not(:has(.fi-ac-action:focus)):focus-within,
+.mb-auth-shell .fi-input-wrp:not(.fi-disabled):focus-within {
+    border-color: var(--auth-accent) !important;
+    background-color: var(--auth-input-bg) !important;
+    outline: none !important;
+    box-shadow: none !important;
+    --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+.mb-auth-shell .fi-input-wrp-prefix,
+.mb-auth-shell .fi-input-wrp-suffix,
+.mb-auth-main .fi-input-wrp-prefix,
+.mb-auth-main .fi-input-wrp-suffix {
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    padding-inline: 0.85rem !important;
+}
+
+.mb-auth-shell .fi-input-wrp-prefix.fi-inline,
+.mb-auth-shell .fi-input-wrp-suffix.fi-inline,
+.mb-auth-main .fi-input-wrp-prefix.fi-inline,
+.mb-auth-main .fi-input-wrp-suffix.fi-inline {
+    border: none !important;
+    box-shadow: none !important;
+    padding-inline-start: 0.85rem !important;
+    padding-inline-end: 0.4rem !important;
+}
+
+.mb-auth-shell .fi-input-wrp-content-ctn,
+.mb-auth-main .fi-input-wrp-content-ctn {
+    display: flex !important;
+    align-items: center !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.mb-auth-main .fi-input-wrp-prefix > .fi-icon,
+.mb-auth-main .fi-input-wrp-suffix > .fi-icon {
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+    min-width: 1.125rem !important;
+    min-height: 1.125rem !important;
+    max-width: 1.125rem !important;
+    max-height: 1.125rem !important;
+    flex-shrink: 0 !important;
+}
+
+.mb-auth-main .fi-input-wrp-prefix > .fi-icon svg,
+.mb-auth-main .fi-input-wrp-suffix > .fi-icon svg {
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+    display: block !important;
+}
+
+.mb-auth-shell input.fi-input,
+.mb-auth-shell .fi-input,
+.mb-auth-main input.fi-input,
+.mb-auth-main .fi-input {
+    appearance: none !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #f4f4f5 !important;
+    -webkit-text-fill-color: #f4f4f5 !important;
+    font-size: 0.92rem !important;
+    caret-color: var(--auth-accent) !important;
+}
+
+.mb-auth-shell input.fi-input:focus,
+.mb-auth-shell input.fi-input:focus-visible,
+.mb-auth-main input.fi-input:focus,
+.mb-auth-main input.fi-input:focus-visible {
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+.mb-auth-shell input.fi-input::placeholder,
+.mb-auth-main input.fi-input::placeholder,
+.mb-auth-main .fi-input::placeholder {
+    color: #9ca3af !important;
+    -webkit-text-fill-color: #9ca3af !important;
+    opacity: 1 !important;
+}
+
+.mb-auth-shell input.fi-input:-webkit-autofill,
+.mb-auth-shell input.fi-input:-webkit-autofill:hover,
+.mb-auth-shell input.fi-input:-webkit-autofill:focus,
+.mb-auth-main input.fi-input:-webkit-autofill,
+.mb-auth-main input.fi-input:-webkit-autofill:hover,
+.mb-auth-main input.fi-input:-webkit-autofill:focus {
+    border: 0 !important;
+    outline: 0 !important;
+    -webkit-box-shadow: 0 0 0 1000px var(--auth-input-bg) inset !important;
+    box-shadow: 0 0 0 1000px var(--auth-input-bg) inset !important;
+    -webkit-text-fill-color: #f4f4f5 !important;
+    transition: background-color 9999s ease-out 0s;
+}
+
+.mb-auth-main .fi-input-wrp-prefix > .fi-icon,
+.mb-auth-main .fi-input-wrp-suffix > .fi-icon {
+    color: var(--auth-muted) !important;
+}
+
+.mb-auth-main .fi-input-wrp:focus-within .fi-input-wrp-prefix > .fi-icon {
+    color: var(--auth-accent) !important;
+}
+
+.mb-auth-main .fi-input-wrp .fi-icon-btn {
+    width: 2rem !important;
+    height: 2rem !important;
+    min-width: 2rem !important;
+    padding: 0 !important;
+    border-radius: 0.4rem !important;
+    background: transparent !important;
+    color: #9ca3af !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.mb-auth-main .fi-input-wrp .fi-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: var(--auth-accent) !important;
+}
+
+.mb-auth-main .fi-input-wrp .fi-icon-btn .fi-icon,
+.mb-auth-main .fi-input-wrp .fi-icon-btn .fi-icon svg {
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+    color: inherit !important;
+}
+
+/* Remember me */
+.mb-auth-actions-row .mb-auth-remember,
+.mb-auth-actions-row .fi-fo-field:has(.fi-checkbox-input) {
+    margin: 0 !important;
+}
+
+.mb-auth-main .fi-checkbox-input {
+    border-radius: 0.35rem !important;
+    border-color: var(--auth-border-strong) !important;
+    background: #0f1116 !important;
+}
+
+.mb-auth-main .fi-checkbox-input:checked {
+    background: var(--auth-accent-deep) !important;
+    border-color: var(--auth-accent-mid) !important;
+}
+
+.mb-auth-main .mb-auth-remember .fi-fo-field-label-content,
+.mb-auth-main .fi-fo-field:has(.fi-checkbox-input) .fi-fo-field-label-content {
+    color: #c8cdd6 !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+}
+
+/* CTA */
+.mb-auth-main .fi-form-actions {
+    margin-top: 0.35rem !important;
+    width: 100%;
+}
+
+.mb-auth-main .fi-form-actions .fi-btn {
+    width: 100%;
+}
+
+.mb-auth-main .fi-ac-btn-action.fi-color-primary,
+.mb-auth-main .fi-btn.fi-btn-color-primary,
+.mb-auth-main .fi-btn-color-primary {
+    --bg: #ea580c !important;
+    --hover-bg: #c2410c !important;
+    --text: #1c1917 !important;
+    --hover-text: #1c1917 !important;
+    --dark-bg: #ea580c !important;
+    --dark-hover-bg: #c2410c !important;
+    --dark-text: #1c1917 !important;
+    --dark-hover-text: #1c1917 !important;
+    min-height: 3rem !important;
+    border-radius: var(--auth-radius-sm) !important;
+    padding-block: 0.75rem !important;
+    padding-inline: 1.25rem !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.01em;
+    color: #1c1917 !important;
+    --tw-bg-opacity: 1 !important;
+    background: var(--auth-gradient) !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: 0 8px 24px rgba(234, 88, 12, 0.35) !important;
+    gap: 0.5rem !important;
+    transition:
+        transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.2s ease,
+        filter 0.2s ease !important;
+}
+
+.mb-auth-main .fi-ac-btn-action.fi-color-primary .fi-icon,
+.mb-auth-main .fi-btn.fi-btn-color-primary .fi-icon {
+    color: #1c1917 !important;
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+}
+
+.mb-auth-main .fi-ac-btn-action.fi-color-primary span,
+.mb-auth-main .fi-btn.fi-btn-color-primary span {
+    color: inherit !important;
+}
+
+.mb-auth-main .fi-ac-btn-action.fi-color-primary:hover,
+.mb-auth-main .fi-btn.fi-btn-color-primary:hover,
+.mb-auth-main .fi-btn-color-primary:hover {
+    color: #1a1208 !important;
+    background: var(--auth-gradient-hover) !important;
+    transform: translateY(-1px);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.2) inset,
+        0 14px 36px rgba(196, 137, 74, 0.4) !important;
+}
+
+.mb-auth-main .fi-btn-color-primary:active {
+    transform: translateY(0);
+}
+
+.mb-auth-main a.fi-link,
+.mb-auth-main .fi-link {
+    color: var(--auth-accent) !important;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.mb-auth-main a.fi-link:hover,
+.mb-auth-main .fi-link:hover {
+    color: #f0d4a8 !important;
+}
+
+/* Desktop split */
+@media (min-width: 960px) {
+    .mb-auth-shell {
+        grid-template-columns: minmax(380px, 1.08fr) minmax(400px, 1fr);
+    }
+
+    .mb-auth-brand {
+        display: block;
+    }
+
+    .mb-auth-stat-grid {
+        gap: 0.85rem;
+    }
+
+    .mb-auth-stat-value {
+        font-size: 1.9rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .mb-auth-stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mb-auth-stat-card {
+        padding: 0.9rem 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mb-auth-stat-card,
+    .mb-auth-stat-card::before,
+    .mb-auth-stat-icon,
+    .mb-auth-main .fi-btn-color-primary {
+        transition: none;
+    }
+
+    .mb-auth-stat-card:hover {
+        transform: none;
+    }
+}

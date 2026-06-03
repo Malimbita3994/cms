@@ -1,0 +1,25 @@
+FROM dunglas/frankenphp:1-php8.3
+
+RUN install-php-extensions \
+    pdo_mysql \
+    mysqli \
+    intl \
+    gd \
+    zip \
+    opcache \
+    pcntl \
+    bcmath \
+    exif
+
+WORKDIR /app
+
+COPY . .
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader \
+    && php artisan package:discover --ansi
+
+COPY docker/octane/entrypoint-prod.sh /usr/local/bin/octane-entrypoint
+RUN chmod +x /usr/local/bin/octane-entrypoint
+
+ENTRYPOINT ["octane-entrypoint"]
