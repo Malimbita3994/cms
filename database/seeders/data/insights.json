@@ -1,0 +1,5 @@
+[
+    {"sort_order": 0, "title": "Designing Government-Ready APIs", "excerpt": "Interoperable APIs require clear schemas, governance controls, and service-level agreements.", "display_date": "March 2026", "image": "/insights/government-apis.svg", "is_published": true},
+    {"sort_order": 1, "title": "From Legacy to Modular Platforms", "excerpt": "How phased architecture migration lowers risk and preserves service continuity.", "display_date": "January 2026", "image": "/insights/legacy-modular.svg", "is_published": true},
+    {"sort_order": 2, "title": "Data Models That Support Policy Decisions", "excerpt": "Building data structures that power transparent reporting and strategic planning.", "display_date": "November 2025", "image": "/insights/data-policy.svg", "is_published": true}
+]

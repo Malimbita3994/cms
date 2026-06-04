@@ -1,0 +1,49 @@
+[
+    {
+        "id": 1,
+        "name": "Japhet Malimbita",
+        "role": "System Analyst",
+        "tagline": "Designing resilient digital ecosystems that connect people, processes, and platforms.",
+        "summary": "System Analyst with strong experience in enterprise architecture, public-sector modernization, and end-to-end systems delivery. I translate policy and operational needs into scalable technical designs that improve service quality and decision-making.",
+        "strengths": [
+            "System Architecture Design",
+            "Software Development",
+            "Integration (APIs, ESB, Government Systems)",
+            "Data Management Systems"
+        ],
+        "email": "japhetfaustine39@gmail.com",
+        "phone": "+255 769 982 007",
+        "location": "Dodoma, Tanzania",
+        "linkedin_url": "https://www.linkedin.com",
+        "github_url": "https://github.com",
+        "image": "/profile-hd.png?v=7",
+        "about_eyebrow": "About Me",
+        "about_heading_lead": "Driving Digital Transformation Through",
+        "about_heading_accent": "Smart Systems",
+        "about_strengths": [
+            {"title": "System Architecture", "description": "Designing scalable, resilient enterprise systems."},
+            {"title": "API & ESB Integration", "description": "Seamless integration across platforms and services."},
+            {"title": "Data Management", "description": "Building reporting-ready and governed systems."},
+            {"title": "Digital Transformation", "description": "Driving innovation in public sector systems."}
+        ],
+        "about_approach_steps": [
+            "01 - Understand business needs deeply",
+            "02 - Design scalable system architecture",
+            "03 - Deliver secure and integrated systems",
+            "04 - Continuously improve performance"
+        ],
+        "about_values": [
+            {"title": "Integrity", "icon": "Shield"},
+            {"title": "Innovation", "icon": "Lightbulb"},
+            {"title": "Excellence", "icon": "Trophy"},
+            {"title": "Impact", "icon": "Target"},
+            {"title": "Collaboration", "icon": "Handshake"},
+            {"title": "Accountability", "icon": "ShieldCheck"},
+            {"title": "Service", "icon": "HeartHandshake"},
+            {"title": "Growth Mindset", "icon": "Rocket"}
+        ],
+        "about_page_hero_eyebrow": "About",
+        "about_page_hero_title": "Professional Profile",
+        "about_page_hero_description": "A deeper look at experience, strengths, values, and delivery philosophy."
+    }
+]

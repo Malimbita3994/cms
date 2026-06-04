@@ -1,0 +1,7 @@
+[
+    {"sort_order": 0, "name": "Requirements Elicitation", "level": 92, "focus": "Workshops, BRDs, user stories, and acceptance criteria aligned to policy", "icon": "ClipboardDocumentList", "is_published": true},
+    {"sort_order": 1, "name": "Business Process Modeling", "level": 90, "focus": "AS-IS / TO-BE flows, BPMN, hand-offs, and operational pain-point analysis", "icon": "RectangleStack", "is_published": true},
+    {"sort_order": 2, "name": "Data Analysis & Reporting", "level": 88, "focus": "Source-to-report validation, KPI design, and decision-ready dashboards", "icon": "ChartBarSquare", "is_published": true},
+    {"sort_order": 3, "name": "System Architecture & Design", "level": 93, "focus": "Context views, interfaces, NFRs, and integration patterns for complex estates", "icon": "Squares2X2", "is_published": true},
+    {"sort_order": 4, "name": "SDLC & Change Governance", "level": 86, "focus": "Release readiness, UAT planning, risk logs, and controlled change windows", "icon": "ArrowPath", "is_published": true}
+]

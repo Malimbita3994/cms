@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "availability_prefix": "Available for projects",
+        "headline": "System Analyst",
+        "hero_summary": "System Analyst with strong experience in enterprise architecture, public-sector modernization, and end-to-end systems delivery. I translate policy and operational needs into scalable technical designs that improve service quality and decision-making.",
+        "hero_background_image": "/Home.jpg?v=2",
+        "hero_profile_image": "/profile-hd.png?v=7",
+        "primary_cta_label": "Start a Project",
+        "primary_cta_url": "/contact",
+        "secondary_cta_label": "View my Works",
+        "secondary_cta_url": "#projects",
+        "cv_cta_label": "View CV",
+        "projects_stat_title": "Projects",
+        "projects_stat_subtitle": "Delivered systems",
+        "services_stat_title": "Services",
+        "services_stat_subtitle": "Core offerings",
+        "insights_stat_title": "Insights",
+        "insights_stat_subtitle": "Published notes",
+        "core_focus_title": "Core Focus",
+        "core_focus_blurb": "Professional capability aligned with enterprise delivery outcomes.",
+        "core_focus_strengths": [
+            {"heading": "System Architecture Design", "text": "Professional capability aligned with enterprise delivery outcomes."},
+            {"heading": "Software Development", "text": "Professional capability aligned with enterprise delivery outcomes."},
+            {"heading": "Integration (APIs, ESB, Government Systems)", "text": "Professional capability aligned with enterprise delivery outcomes."},
+            {"heading": "Data Management Systems", "text": "Professional capability aligned with enterprise delivery outcomes."}
+        ],
+        "show_core_focus": true
+    }
+]

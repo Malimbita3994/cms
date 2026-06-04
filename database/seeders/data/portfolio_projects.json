@@ -1,0 +1,54 @@
+[
+    {
+        "sort_order": 0,
+        "title": "e-Elimu Portal",
+        "description": "A digital learning platform that centralizes curriculum resources, learner progress, and institutional reporting.",
+        "technologies": ["Laravel", "MySQL", "REST APIs", "Docker"],
+        "achievements": [
+            "Reduced manual reporting effort by over 40% through automated dashboards",
+            "Introduced role-based access control for teachers, students, and administrators"
+        ],
+        "image": "/projects/dashboard.svg",
+        "preview": "Analytics-focused dashboard for educational workflow visibility.",
+        "is_published": true
+    },
+    {
+        "sort_order": 1,
+        "title": "TCMS (Teacher College Management System)",
+        "description": "Comprehensive management suite for admissions, academic records, and student lifecycle operations.",
+        "technologies": ["PHP", "PostgreSQL", "Bootstrap", "Nginx"],
+        "achievements": [
+            "Standardized data structures across departments for reliable analytics",
+            "Improved student service turnaround through integrated workflows"
+        ],
+        "image": "/projects/integration.svg",
+        "preview": "Process automation architecture for end-to-end academic operations.",
+        "is_published": true
+    },
+    {
+        "sort_order": 2,
+        "title": "FDC-MIS",
+        "description": "Management information system for planning, monitoring, and evaluating facility-level development programs.",
+        "technologies": ["Laravel", "Vue", "MariaDB", "API Gateway"],
+        "achievements": [
+            "Established KPI-based monitoring modules aligned with institutional goals",
+            "Enabled multi-site reporting consolidation for executive decision support"
+        ],
+        "image": "/projects/analytics.svg",
+        "preview": "Multi-site insight system for strategic planning and KPI tracking.",
+        "is_published": true
+    },
+    {
+        "sort_order": 3,
+        "title": "Contract Management System (CoMIS)",
+        "description": "End-to-end contract lifecycle platform from initiation to compliance tracking and renewal governance.",
+        "technologies": ["Laravel", "Redis", "PostgreSQL", "Queue Workers"],
+        "achievements": [
+            "Reduced compliance delays with automated reminders and escalation workflows",
+            "Implemented auditable approval trails for procurement transparency"
+        ],
+        "image": "/projects/contracts.svg",
+        "preview": "Secure contract orchestration with audit-ready approval trails.",
+        "is_published": true
+    }
+]

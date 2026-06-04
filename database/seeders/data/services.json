@@ -1,0 +1,6 @@
+[
+    {"sort_order": 0, "title": "System Design & Architecture", "tagline": "Blueprinting scalable platforms with clear integration and governance models.", "description": "<p>Blueprinting scalable platforms with clear integration and governance models.</p>", "icon": "CommandLine", "is_published": true},
+    {"sort_order": 1, "title": "Web Application Development", "tagline": "Building secure, maintainable business applications tailored to operational needs.", "description": "<p>Building secure, maintainable business applications tailored to operational needs.</p>", "icon": "Window", "is_published": true},
+    {"sort_order": 2, "title": "Digital Transformation Consulting", "tagline": "Guiding organizations through process digitization and technology adoption.", "description": "<p>Guiding organizations through process digitization and technology adoption.</p>", "icon": "Sparkles", "is_published": true},
+    {"sort_order": 3, "title": "Government System Integration", "tagline": "Connecting institutional systems with APIs, ESB layers, and regulatory platforms.", "description": "<p>Connecting institutional systems with APIs, ESB layers, and regulatory platforms.</p>", "icon": "GlobeAlt", "is_published": true}
+]
