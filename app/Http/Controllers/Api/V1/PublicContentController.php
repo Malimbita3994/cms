@@ -9,11 +9,13 @@ use App\Models\CaseStudy;
 use App\Models\HomePage;
 use App\Support\CoreFocusItems;
 use App\Models\Insight;
+use App\Models\Poster;
 use App\Models\PortfolioProject;
 use App\Models\Profile;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Models\Skill;
+use App\Support\PortfolioAsset;
 use App\Support\SiteContentCache;
 use Illuminate\Support\Collection;
 
@@ -30,6 +32,36 @@ class PublicContentController extends Controller
             'impact' => $c->impact,
             'stack' => $c->stack ?? [],
         ])->values()->all());
+    }
+
+    public function posters()
+    {
+        $rows = $this->publicPosterQuery()->get();
+
+        return response()->json($rows->map(fn (Poster $poster) => $this->posterArray($poster))->values()->all());
+    }
+
+    public function postersFeatured()
+    {
+        $rows = $this->publicPosterQuery()
+            ->where('is_featured', true)
+            ->limit(1)
+            ->get();
+
+        return response()->json($rows->map(fn (Poster $poster) => $this->posterArray($poster))->values()->all());
+    }
+
+    public function posterBySlug(string $slug)
+    {
+        $poster = $this->publicPosterQuery()
+            ->where('slug', $slug)
+            ->first();
+
+        if (! $poster) {
+            return response()->json(['error' => 'Poster not found'], 404);
+        }
+
+        return response()->json($this->posterArray($poster, includeContent: true));
     }
 
     public function siteBundle()
@@ -117,6 +149,7 @@ class PublicContentController extends Controller
                 'impact' => $c->impact,
                 'stack' => $c->stack ?? [],
             ])),
+            'posters' => $this->listArray($this->publicPosterQuery()->get()->map(fn (Poster $poster) => $this->posterArray($poster))),
             'discipline' => $this->disciplineArray(),
         ];
     }
@@ -153,6 +186,65 @@ class PublicContentController extends Controller
     protected function listArray(Collection $items): array
     {
         return $items->values()->all();
+    }
+
+    protected function publicPosterQuery()
+    {
+        return Poster::query()
+            ->publiclyVisible()
+            ->orderByDesc('is_featured')
+            ->orderByDesc('published_at')
+            ->orderBy('sort_order')
+            ->orderBy('id');
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    protected function posterArray(Poster $poster, bool $includeContent = false): array
+    {
+        $payload = [
+            'id' => $poster->id,
+            'title' => $poster->title,
+            'slug' => $poster->slug,
+            'category' => $poster->category,
+            'short_description' => $poster->short_description ?? '',
+            'image' => $poster->image ?? '',
+            'image_url' => $this->posterImageUrl($poster->image),
+            'pdf' => $poster->pdf ?? '',
+            'pdf_url' => $this->posterImageUrl($poster->pdf),
+            'is_featured' => (bool) $poster->is_featured,
+            'status' => $poster->is_published ? 'published' : 'draft',
+            'published_at' => $poster->published_at?->toIso8601String(),
+        ];
+
+        if ($includeContent) {
+            $payload['content'] = $poster->content ?? '';
+        }
+
+        return $payload;
+    }
+
+    protected function posterImageUrl(?string $image): string
+    {
+        if ($image === null || $image === '') {
+            return '';
+        }
+
+        $preview = PortfolioAsset::previewUrl($image);
+        if ($preview !== null && $preview !== '') {
+            if (str_starts_with($preview, 'http://') || str_starts_with($preview, 'https://')) {
+                return $preview;
+            }
+
+            return rtrim((string) config('app.url'), '/').'/'.ltrim($preview, '/');
+        }
+
+        if (str_starts_with($image, 'http://') || str_starts_with($image, 'https://')) {
+            return $image;
+        }
+
+        return rtrim((string) config('app.url'), '/').'/'.ltrim($image, '/');
     }
 
     /**

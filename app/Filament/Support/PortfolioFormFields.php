@@ -105,6 +105,38 @@ final class PortfolioFormFields
         return $upload;
     }
 
+    public static function pdfUpload(
+        string $name,
+        string $directory,
+        string $label,
+        string $helperText,
+        bool $required = false,
+    ): FileUpload {
+        $upload = FileUpload::make($name)
+            ->label($label)
+            ->disk(PortfolioAsset::DISK)
+            ->directory($directory)
+            ->visibility('public')
+            ->acceptedFileTypes(['application/pdf'])
+            ->openable()
+            ->downloadable()
+            ->previewable(false)
+            ->panelLayout('compact')
+            ->removeUploadedFileButtonPosition('right')
+            ->uploadButtonPosition('center')
+            ->loadingIndicatorPosition('center')
+            ->uploadProgressIndicatorPosition('center')
+            ->maxSize(20_480)
+            ->getUploadedFileUsing(PortfolioAsset::uploadedFileResolver(...))
+            ->helperText($helperText);
+
+        if ($required) {
+            $upload->required();
+        }
+
+        return $upload;
+    }
+
     public static function richEditor(string $name, string $label, ?string $placeholder = null): RichEditor
     {
         $editor = RichEditor::make($name)

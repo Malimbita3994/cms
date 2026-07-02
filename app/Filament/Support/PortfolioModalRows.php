@@ -4,6 +4,7 @@ namespace App\Filament\Support;
 
 use App\Models\CareerTimelineEntry;
 use App\Models\Insight;
+use App\Models\Poster;
 use App\Models\PortfolioProject;
 use App\Models\HomePage;
 use App\Models\Profile;
@@ -44,6 +45,21 @@ final class PortfolioModalRows
             'rows' => [
                 ['label' => 'Date', 'text' => $record->display_date ?: '—'],
                 ['label' => 'Excerpt', 'html' => $record->excerpt],
+            ],
+        ];
+    }
+
+    public static function poster(Poster $record): array
+    {
+        return [
+            'title' => $record->title,
+            'status' => ($record->is_published ?? false) ? 'Published on site' : 'Draft (hidden)',
+            'rows' => [
+                ['label' => 'Category', 'text' => $record->category],
+                ['label' => 'Slug', 'text' => $record->slug],
+                ['label' => 'Featured', 'text' => $record->is_featured ? 'Yes' : 'No'],
+                ['label' => 'PDF', 'text' => $record->pdf ? basename($record->pdf) : '—'],
+                ['label' => 'Short description', 'html' => $record->short_description ?: '—'],
             ],
         ];
     }

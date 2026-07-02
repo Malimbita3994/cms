@@ -35,6 +35,7 @@ class PortfolioContentSeeder extends Seeder
             'insights',
             'case_studies',
             'discipline_pages',
+            'posters',
         ];
 
         Schema::disableForeignKeyConstraints();

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 final class SiteContentCache
 {
     /** Bumped when site bundle shape changes (e.g. list fields must be JSON arrays). */
-    public const KEY = 'api:v1:site:3';
+    public const KEY = 'api:v1:site:4';
 
     public const LIST_KEYS = [
         'careerTimeline',
@@ -17,6 +17,7 @@ final class SiteContentCache
         'services',
         'insights',
         'caseStudies',
+        'posters',
     ];
 
     public static function remember(callable $builder): array

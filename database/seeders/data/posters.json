@@ -1,0 +1,62 @@
+[
+  {
+    "sort_order": 0,
+    "is_published": true,
+    "is_featured": true,
+    "title": "Portfolio Site Refresh Goes Live",
+    "slug": "portfolio-site-refresh-goes-live",
+    "category": "News",
+    "short_description": "<p>The public portfolio has been refreshed with a faster Next.js frontend, CMS-driven content, and a new updates section for news and announcements.</p>",
+    "content": "<p>Visitors can now browse projects, case studies, insights, and the latest homepage updates from a single responsive experience.</p><p>This release improves performance, accessibility, and makes it easier to publish news without redeploying the site.</p>",
+    "image": "/uploads/insights/01KRXP8YFG0GJMY78PK7P96RC8.png",
+    "published_at": "2026-06-01 09:00:00"
+  },
+  {
+    "sort_order": 1,
+    "is_published": true,
+    "is_featured": false,
+    "title": "CMS Admin Now Supports Posters and News",
+    "slug": "cms-admin-posters-and-news",
+    "category": "Updates",
+    "short_description": "<p>Editors can create, publish, and feature posters directly from the Laravel admin panel. Published items appear automatically on the homepage.</p>",
+    "content": "<p>The new Posters / News module supports categories such as announcements, blogs, entertainment, and general updates.</p><p>Draft content stays hidden until it is published, and featured posts are highlighted in the Latest Updates section.</p>",
+    "image": "/uploads/case-studies/01KS565SQJ8NJ74ZTXD7DXVNCQ.png",
+    "published_at": "2026-06-02 14:30:00"
+  },
+  {
+    "sort_order": 2,
+    "is_published": true,
+    "is_featured": false,
+    "title": "Why Integration Design Belongs With System Analysis",
+    "slug": "integration-design-and-system-analysis",
+    "category": "Blog",
+    "short_description": "<p>Strong system analysis should shape API contracts, data ownership, and service boundaries before development accelerates.</p>",
+    "content": "<p>When integration decisions are deferred, teams pay for them later in rework, fragile interfaces, and unclear accountability.</p><p>A practical approach is to pair process modeling with interface design early, then validate assumptions through thin vertical slices.</p>",
+    "image": "/uploads/services/01KS4Z3Y97JN8E1C72EP54CYDZ.png",
+    "published_at": "2026-06-03 11:15:00"
+  },
+  {
+    "sort_order": 3,
+    "is_published": true,
+    "is_featured": false,
+    "title": "Open for Enterprise Consulting Engagements",
+    "slug": "open-for-enterprise-consulting",
+    "category": "Announcements",
+    "short_description": "<p>Accepting new system analysis, architecture review, and digital transformation engagements for Q3 2026.</p>",
+    "content": "<p>If you are modernizing legacy platforms, standardizing APIs, or preparing for a major release, reach out through the contact page to discuss scope and timelines.</p>",
+    "image": "/uploads/projects/01KS57XFMM7MQYVJWXMPYVNMQ1.png",
+    "published_at": "2026-06-04 08:00:00"
+  },
+  {
+    "sort_order": 4,
+    "is_published": true,
+    "is_featured": false,
+    "title": "Architecture Sketch Session Highlights",
+    "slug": "architecture-sketch-session-highlights",
+    "category": "Entertainment",
+    "short_description": "<p>A quick look at a whiteboard session mapping service flows, actors, and integration touchpoints for a public-sector platform.</p>",
+    "content": "<p>These sessions help stakeholders align on scope before detailed design begins. The visual format makes dependencies and hand-offs easier to discuss.</p><p>Even a one-hour sketch can surface risks that spreadsheets and slide decks often hide.</p>",
+    "image": "/uploads/insights/01KS5AEFQKTJ79MQENGXW31ZY3.png",
+    "published_at": "2026-06-05 16:45:00"
+  }
+]

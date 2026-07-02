@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $admin->assignRole('Super Admin');
 
         $this->call(PortfolioContentSeeder::class);
+        $this->call(PosterSeeder::class);
     }
 }
