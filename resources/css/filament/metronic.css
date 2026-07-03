@@ -181,38 +181,99 @@ body,
 }
 
 .fi-sidebar-nav-groups {
-    gap: 0.15rem !important;
+    gap: 0.65rem !important;
     margin: 0 !important;
 }
 
 .fi-sidebar-group {
-    gap: 0.05rem !important;
+    gap: 0.1rem !important;
+}
+
+.fi-sidebar-group + .fi-sidebar-group {
+    margin-top: 0.35rem !important;
+    padding-top: 0.15rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
 
 .fi-sidebar-group-label {
-    color: #6b7280 !important;
-    font-size: 0.62rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.11em !important;
+    color: #9ca3af !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
     text-transform: uppercase !important;
-    padding: 0.75rem 0.5rem 0.3rem !important;
+    padding: 0 !important;
     margin: 0 !important;
+    flex: 1 1 auto !important;
+    text-align: start !important;
 }
 
-/* Static section headings (Content, Authentication) */
-.fi-sidebar-group-btn {
+/* Collapsible group headers */
+.fi-sidebar-group.fi-collapsible > .fi-sidebar-group-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.45rem !important;
+    width: 100% !important;
+    min-height: 2rem !important;
+    padding: 0.45rem 0.5rem !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0.5rem !important;
+    background: transparent !important;
+    color: inherit !important;
+    font: inherit !important;
+    text-align: start !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+.fi-sidebar-group.fi-collapsible > .fi-sidebar-group-btn:focus-visible {
+    outline: 2px solid rgba(245, 158, 11, 0.55) !important;
+    outline-offset: 2px !important;
+}
+
+.fi-sidebar-group.fi-collapsible > .fi-sidebar-group-btn:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.fi-sidebar-group.fi-collapsible > .fi-sidebar-group-btn:hover .fi-sidebar-group-label {
+    color: #d1d5db !important;
+}
+
+.fi-sidebar-group-btn--static {
     pointer-events: none !important;
     cursor: default !important;
-    height: auto !important;
-    min-height: 0 !important;
-    padding: 0.75rem 0.5rem 0.3rem !important;
-    margin: 0 !important;
-    overflow: visible !important;
-    opacity: 1 !important;
 }
 
 .fi-sidebar-group-collapse-btn {
-    display: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    margin-inline-start: auto !important;
+    color: #9ca3af !important;
+    transition: transform 0.25s ease, color 0.15s ease !important;
+}
+
+.fi-sidebar-group.fi-collapsible > .fi-sidebar-group-btn:hover .fi-sidebar-group-collapse-btn {
+    color: #f59e0b !important;
+}
+
+.fi-sidebar-group-collapse-btn .fi-icon,
+.fi-sidebar-group-collapse-btn svg {
+    width: 0.85rem !important;
+    height: 0.85rem !important;
+}
+
+.fi-sidebar-group.fi-collapsed .fi-sidebar-group-collapse-btn {
+    transform: rotate(-180deg);
+}
+
+.fi-sidebar-group-items {
+    overflow: hidden !important;
 }
 
 .fi-sidebar-group-dropdown-trigger-btn {

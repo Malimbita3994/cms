@@ -34,9 +34,9 @@ class Discipline extends Page implements HasForms
 
     protected static ?string $navigationLabel = 'Discipline';
 
-    protected static ?int $navigationSort = 9;
+    protected static ?int $navigationSort = 30;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::CONTENT;
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::SITE_PAGES;
 
     protected static ?string $slug = 'discipline';
 

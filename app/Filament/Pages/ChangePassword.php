@@ -27,9 +27,11 @@ class ChangePassword extends Page implements HasForms
 
     protected static ?string $navigationLabel = 'Change Password';
 
-    protected static ?int $navigationSort = 4;
+    protected static bool $shouldRegisterNavigation = false;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::AUTHENTICATION;
+    protected static ?int $navigationSort = 40;
+
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::ACCESS_CONTROL;
 
     protected string $view = 'filament.pages.change-password';
 

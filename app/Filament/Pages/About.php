@@ -41,9 +41,9 @@ class About extends Page implements HasForms
 
     protected static ?string $navigationLabel = 'About';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 20;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::CONTENT;
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::SITE_PAGES;
 
     protected static ?string $slug = 'profiles';
 

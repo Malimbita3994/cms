@@ -25,9 +25,9 @@ class InsightResource extends Resource
 
     protected static ?string $navigationLabel = 'Insights';
 
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 50;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::CONTENT;
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::PORTFOLIO;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedLightBulb;
 

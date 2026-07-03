@@ -36,9 +36,9 @@ class Contact extends Page implements HasActions, HasForms, HasTable
 
     protected static ?string $navigationLabel = 'Contact';
 
-    protected static ?int $navigationSort = 8;
+    protected static ?int $navigationSort = 40;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::CONTENT;
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::SITE_PAGES;
 
     protected static ?string $slug = 'contact';
 

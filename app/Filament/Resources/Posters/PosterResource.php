@@ -29,9 +29,9 @@ class PosterResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Posters / News';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 10;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::CONTENT;
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::NEWS;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedNewspaper;
 

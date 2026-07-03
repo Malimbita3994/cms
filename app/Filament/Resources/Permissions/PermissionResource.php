@@ -20,13 +20,13 @@ class PermissionResource extends Resource
 {
     protected static ?string $model = Permission::class;
 
-    protected static ?string $navigationLabel = 'Permission';
+    protected static ?string $navigationLabel = 'Permissions';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedLockClosed;
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 30;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::AUTHENTICATION;
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::ACCESS_CONTROL;
 
     public static function form(Schema $schema): Schema
     {

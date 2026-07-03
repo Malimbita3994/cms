@@ -23,15 +23,15 @@ class CaseStudyResource extends Resource
 
     protected static ?string $model = CaseStudy::class;
 
-    protected static ?string $navigationLabel = 'Case studies';
+    protected static ?string $navigationLabel = 'Case Studies';
 
     protected static ?string $modelLabel = 'case study';
 
     protected static ?string $pluralModelLabel = 'case studies';
 
-    protected static ?int $navigationSort = 6;
+    protected static ?int $navigationSort = 20;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::CONTENT;
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::PORTFOLIO;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 

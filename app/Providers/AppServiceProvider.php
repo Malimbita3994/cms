@@ -101,6 +101,11 @@ class AppServiceProvider extends ServiceProvider
         );
 
         FilamentView::registerRenderHook(
+            PanelsRenderHook::SIDEBAR_NAV_END,
+            fn (): string => view('filament.partials.sidebar-nav-config')->render(),
+        );
+
+        FilamentView::registerRenderHook(
             PanelsRenderHook::SIDEBAR_FOOTER,
             fn (): string => self::cachedFilamentPartial('sidebar-logout', 'filament.partials.sidebar-logout'),
         );

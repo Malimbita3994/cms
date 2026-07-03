@@ -50,9 +50,9 @@ class Dashboard extends BaseDashboard
 
     protected static ?string $navigationLabel = 'Dashboard';
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 10;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::CONTENT;
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::OVERVIEW;
 
     protected string $view = 'filament.pages.dashboard';
 

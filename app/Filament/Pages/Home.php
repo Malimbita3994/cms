@@ -40,9 +40,9 @@ class Home extends Page implements HasForms
 
     protected static ?string $navigationLabel = 'Home';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 10;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::CONTENT;
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::SITE_PAGES;
 
     protected static ?string $slug = 'home';
 

@@ -25,9 +25,9 @@ class SkillResource extends Resource
 
     protected static ?string $navigationLabel = 'Skills';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 30;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::CONTENT;
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::PORTFOLIO;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
 

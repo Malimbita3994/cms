@@ -28,9 +28,9 @@ class CareerTimelineEntryResource extends Resource
 
     protected static ?string $pluralModelLabel = 'career journey entries';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 60;
 
-    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::CONTENT;
+    protected static string|\UnitEnum|null $navigationGroup = NavigationGroups::PORTFOLIO;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;
 

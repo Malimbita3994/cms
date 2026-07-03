@@ -47,12 +47,21 @@ class AdminPanelProvider extends PanelProvider
             ->font('Inter')
             ->viteTheme('resources/css/filament/metronic.css')
             ->navigationGroups([
-                NavigationGroup::make(NavigationGroups::CONTENT)
+                NavigationGroup::make(NavigationGroups::OVERVIEW)
                     ->collapsible()
                     ->collapsed(false),
-                NavigationGroup::make(NavigationGroups::AUTHENTICATION)
+                NavigationGroup::make(NavigationGroups::SITE_PAGES)
                     ->collapsible()
-                    ->collapsed(false),
+                    ->collapsed(true),
+                NavigationGroup::make(NavigationGroups::PORTFOLIO)
+                    ->collapsible()
+                    ->collapsed(true),
+                NavigationGroup::make(NavigationGroups::NEWS)
+                    ->collapsible()
+                    ->collapsed(true),
+                NavigationGroup::make(NavigationGroups::ACCESS_CONTROL)
+                    ->collapsible()
+                    ->collapsed(true),
             ])
             ->colors([
                 'primary' => [

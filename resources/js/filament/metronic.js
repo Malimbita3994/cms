@@ -1,3 +1,85 @@
+const SIDEBAR_NAV_VERSION_KEY = 'cmsSidebarNavVersion';
+
+const readSidebarNavConfig = () => {
+    const element = document.getElementById('cms-sidebar-nav-config');
+
+    if (!element?.textContent) {
+        return null;
+    }
+
+    try {
+        return JSON.parse(element.textContent);
+    } catch {
+        return null;
+    }
+};
+
+const ensureCollapsedGroupsArray = (store) => {
+    if (!Array.isArray(store.collapsedGroups)) {
+        store.collapsedGroups = [];
+    }
+};
+
+const expandActiveSidebarGroup = (store = window.Alpine?.store?.('sidebar')) => {
+    if (!store) {
+        return;
+    }
+
+    ensureCollapsedGroupsArray(store);
+
+    const activeGroup =
+        document.querySelector('.fi-sidebar-group.fi-active') ||
+        document.querySelector('.fi-sidebar-group .fi-sidebar-item.fi-active')?.closest('.fi-sidebar-group');
+
+    if (!activeGroup) {
+        return;
+    }
+
+    const label = activeGroup.getAttribute('data-group-label');
+
+    if (!label || !store.collapsedGroups.includes(label)) {
+        return;
+    }
+
+    store.collapsedGroups = store.collapsedGroups.filter((group) => group !== label);
+
+    activeGroup.classList.remove('fi-collapsed');
+
+    const items = activeGroup.querySelector('.fi-sidebar-group-items');
+
+    if (items) {
+        items.style.display = '';
+    }
+};
+
+const initSidebarNavigationState = () => {
+    const store = window.Alpine?.store?.('sidebar');
+
+    if (!store) {
+        return;
+    }
+
+    const config = readSidebarNavConfig();
+
+    if (!config) {
+        expandActiveSidebarGroup(store);
+
+        return;
+    }
+
+    const savedVersion = localStorage.getItem(SIDEBAR_NAV_VERSION_KEY);
+    const version = String(config.version ?? '');
+
+    if (savedVersion !== version) {
+        store.collapsedGroups = [...(config.defaultCollapsed ?? [])];
+        localStorage.setItem('collapsedGroups', JSON.stringify(store.collapsedGroups));
+        localStorage.setItem(SIDEBAR_NAV_VERSION_KEY, version);
+    }
+
+    ensureCollapsedGroupsArray(store);
+    expandActiveSidebarGroup(store);
+};
+
 const assignSidebarTitles = () => {
     document
         .querySelectorAll('.fi-sidebar-item-btn, .fi-sidebar-database-notifications-btn')
@@ -114,10 +196,15 @@ if (document.readyState === 'loading') {
     initSaasShell();
 }
 
-document.addEventListener('alpine:init', openSidebarOnDesktop);
+document.addEventListener('alpine:init', () => {
+    openSidebarOnDesktop();
+    initSidebarNavigationState();
+});
+
 document.addEventListener('livewire:navigated', () => {
     assignSidebarTitles();
     syncTopbarAvatarFromDocument();
+    initSidebarNavigationState();
 });
 
 document.addEventListener('livewire:init', bindUserAvatarUpdates);
