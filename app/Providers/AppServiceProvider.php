@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Filament\Auth\Http\Responses\LoginResponse;
 use App\Filament\Auth\Http\Responses\LogoutResponse;
 use App\Filament\Support\PortfolioFormFields;
+use App\Filament\Support\SidebarNavigationConfig;
 use Filament\Forms\Components\RichEditor;
 use App\Models\CareerTimelineEntry;
 use App\Models\CaseStudy;
@@ -44,6 +45,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if ($this->app->environment('local') && ! $this->app->runningInConsole()) {
+            @ini_set('max_execution_time', '120');
+            @set_time_limit(120);
+        }
+
         RichEditor::configureUsing(
             fn (RichEditor $editor): RichEditor => PortfolioFormFields::applyRichEditorDefaults($editor),
         );
@@ -75,7 +81,9 @@ class AppServiceProvider extends ServiceProvider
         FilamentView::registerRenderHook(
             PanelsRenderHook::STYLES_AFTER,
             fn (): ?string => auth()->check()
-                ? view('filament.partials.panel-assets')->render()
+                ? self::cachedFilamentPartial('panel-assets-vite', 'filament.partials.panel-assets-vite')
+                    .view('filament.partials.panel-assets-session')->render()
+                    .self::renderAuthUserAvatarScript()
                 : null,
         );
 
@@ -91,18 +99,21 @@ class AppServiceProvider extends ServiceProvider
 
         FilamentView::registerRenderHook(
             PanelsRenderHook::TOPBAR_LOGO_AFTER,
-            fn (): string => (string) view('filament.partials.topbar-title'),
+            fn (): string => self::cachedFilamentPartial('topbar-title', 'filament.partials.topbar-title'),
         );
 
         /* Bell + user menu live together in .fi-topbar-end (top-right) */
         FilamentView::registerRenderHook(
             PanelsRenderHook::GLOBAL_SEARCH_AFTER,
-            fn (): string => view('filament.partials.topbar-actions')->render(),
+            fn (): string => self::cachedFilamentPartial('topbar-actions', 'filament.partials.topbar-actions'),
         );
 
         FilamentView::registerRenderHook(
             PanelsRenderHook::SIDEBAR_NAV_END,
-            fn (): string => view('filament.partials.sidebar-nav-config')->render(),
+            fn (): string => self::cachedFilamentPartial(
+                'sidebar-nav-config.v'.SidebarNavigationConfig::VERSION,
+                'filament.partials.sidebar-nav-config',
+            ),
         );
 
         FilamentView::registerRenderHook(
@@ -120,9 +131,27 @@ class AppServiceProvider extends ServiceProvider
 
     private static function cachedFilamentPartial(string $key, string $view): string
     {
+        $manifestPath = public_path('build/manifest.json');
+        $manifestVersion = is_file($manifestPath) ? (string) filemtime($manifestPath) : '0';
+
         return Cache::rememberForever(
-            "filament.partial.{$key}",
+            "filament.partial.{$key}.{$manifestVersion}",
             static fn (): string => view($view)->render(),
         );
+    }
+
+    private static function renderAuthUserAvatarScript(): string
+    {
+        $user = auth()->user();
+
+        if ($user === null) {
+            return '';
+        }
+
+        $avatarUrl = \Filament\Facades\Filament::getUserAvatarUrl($user);
+
+        return '<script type="application/json" id="auth-user-avatar-url">'
+            .json_encode($avatarUrl, JSON_THROW_ON_ERROR | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT)
+            .'</script>';
     }
 }

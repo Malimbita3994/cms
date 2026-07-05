@@ -14,7 +14,7 @@ use Throwable;
 class WarmOctaneWorker
 {
     /** @var list<string> */
-    private const WARM_PATHS = ['/up', '/admin/login'];
+    private const WARM_PATHS = ['/up', '/'];
 
     public function __construct(private readonly Kernel $kernel) {}
 

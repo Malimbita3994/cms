@@ -2,18 +2,14 @@
 
 namespace App\Filament\Support;
 
-use App\Models\CareerTimelineEntry;
-use App\Models\Insight;
 use App\Models\Poster;
-use App\Models\PortfolioProject;
-use App\Models\HomePage;
-use App\Models\Profile;
-use App\Models\Service;
-use App\Models\Skill;
+use App\Support\PortfolioAsset;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Number;
 
 final class PortfolioModalRows
 {
-    public static function skill(Skill $record): array
+    public static function skill(\App\Models\Skill $record): array
     {
         return [
             'title' => $record->name,
@@ -25,7 +21,7 @@ final class PortfolioModalRows
         ];
     }
 
-    public static function service(Service $record): array
+    public static function service(\App\Models\Service $record): array
     {
         return [
             'title' => $record->title,
@@ -37,7 +33,7 @@ final class PortfolioModalRows
         ];
     }
 
-    public static function insight(Insight $record): array
+    public static function insight(\App\Models\Insight $record): array
     {
         return [
             'title' => $record->title,
@@ -49,22 +45,62 @@ final class PortfolioModalRows
         ];
     }
 
+    /**
+     * @return array{
+     *     title: string,
+     *     typeLabel: string,
+     *     isPublished: bool,
+     *     category: string,
+     *     categorySlug: string,
+     *     slug: string,
+     *     isFeatured: bool,
+     *     imageUrl: string|null,
+     *     pdf: array{name: string, url: string, size: string|null}|null,
+     *     shortDescription: string|null,
+     *     publishedAt: \Illuminate\Support\Carbon|null,
+     *     updatedAt: \Illuminate\Support\Carbon|null,
+     *     id: int
+     * }
+     */
     public static function poster(Poster $record): array
     {
+        $imageRelative = PortfolioAsset::toUploadState($record->image);
+        $imageUrl = $imageRelative !== null
+            ? url('/media/'.ltrim($imageRelative, '/'))
+            : null;
+
+        $pdfRelative = PortfolioAsset::toUploadState($record->pdf);
+        $pdf = null;
+
+        if ($pdfRelative !== null) {
+            $disk = Storage::disk(PortfolioAsset::DISK);
+            $pdf = [
+                'name' => basename($record->pdf),
+                'url' => url('/media/'.ltrim($pdfRelative, '/')),
+                'size' => $disk->exists($pdfRelative)
+                    ? Number::fileSize($disk->size($pdfRelative), precision: 1)
+                    : null,
+            ];
+        }
+
         return [
             'title' => $record->title,
-            'status' => ($record->is_published ?? false) ? 'Published on site' : 'Draft (hidden)',
-            'rows' => [
-                ['label' => 'Category', 'text' => $record->category],
-                ['label' => 'Slug', 'text' => $record->slug],
-                ['label' => 'Featured', 'text' => $record->is_featured ? 'Yes' : 'No'],
-                ['label' => 'PDF', 'text' => $record->pdf ? basename($record->pdf) : '—'],
-                ['label' => 'Short description', 'html' => $record->short_description ?: '—'],
-            ],
+            'typeLabel' => $record->category.' post',
+            'isPublished' => (bool) $record->is_published,
+            'category' => $record->category,
+            'categorySlug' => PosterCategoryColors::slug($record->category),
+            'slug' => $record->slug,
+            'isFeatured' => (bool) $record->is_featured,
+            'imageUrl' => $imageUrl,
+            'pdf' => $pdf,
+            'shortDescription' => $record->short_description,
+            'publishedAt' => $record->published_at,
+            'updatedAt' => $record->updated_at,
+            'id' => $record->id,
         ];
     }
 
-    public static function project(PortfolioProject $record): array
+    public static function project(\App\Models\PortfolioProject $record): array
     {
         return [
             'title' => $record->title,
@@ -76,7 +112,7 @@ final class PortfolioModalRows
         ];
     }
 
-    public static function career(CareerTimelineEntry $record): array
+    public static function career(\App\Models\CareerTimelineEntry $record): array
     {
         return [
             'title' => $record->title,
@@ -88,7 +124,7 @@ final class PortfolioModalRows
         ];
     }
 
-    public static function profile(Profile $record): array
+    public static function profile(\App\Models\Profile $record): array
     {
         return [
             'title' => $record->name,
@@ -101,7 +137,7 @@ final class PortfolioModalRows
         ];
     }
 
-    public static function home(HomePage $record): array
+    public static function home(\App\Models\HomePage $record): array
     {
         return [
             'title' => $record->headline ?: 'Home page',

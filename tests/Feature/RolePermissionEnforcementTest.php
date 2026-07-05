@@ -53,7 +53,7 @@ class RolePermissionEnforcementTest extends TestCase
         $this->assertFalse(\App\Filament\Pages\Dashboard::canAccess());
 
         $this->get('/admin')
-            ->assertRedirect('/admin/login');
+            ->assertRedirect('/');
     }
 
     public function test_user_without_permission_cannot_access_skill_resource(): void

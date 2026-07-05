@@ -3,14 +3,14 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Auth\EditProfile;
-use App\Filament\Auth\Login;
+use App\Filament\Auth\RequestPasswordReset;
 use App\Filament\Pages\Dashboard;
 use App\Filament\Support\NavigationGroups;
 use App\Http\Middleware\EnsureHasCmsPermissions;
+use App\Http\Middleware\RedirectGuestsToCmsLogin;
+use App\Http\Middleware\RedirectInvalidSessionToCmsLogin;
 use Filament\Enums\ThemeMode;
 use Filament\Enums\UserMenuPosition;
-use Filament\Http\Middleware\Authenticate;
-use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Navigation\NavigationGroup;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -32,12 +32,13 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->brandName('SAP CMS')
+            ->brandName('BA CMS')
             ->brandLogo(asset('loggoo.png'))
             ->darkModeBrandLogo(asset('loggoo.png'))
             ->brandLogoHeight('1.75rem')
-            ->login(Login::class)
-            ->passwordReset()
+            ->login(null)
+            ->passwordReset(requestAction: RequestPasswordReset::class)
+            ->passwordResetRequestRouteSlug('')
             ->profile(EditProfile::class, isSimple: false)
             ->userMenu(position: UserMenuPosition::Topbar)
             ->sidebarWidth('16rem')
@@ -84,13 +85,11 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
-            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
                 StartSession::class,
-                AuthenticateSession::class,
+                RedirectInvalidSessionToCmsLogin::class,
                 ShareErrorsFromSession::class,
                 PreventRequestForgery::class,
                 SubstituteBindings::class,
@@ -98,7 +97,7 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->authMiddleware([
-                Authenticate::class,
+                RedirectGuestsToCmsLogin::class,
                 EnsureHasCmsPermissions::class,
             ], isPersistent: true);
     }

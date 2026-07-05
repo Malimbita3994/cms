@@ -6,6 +6,8 @@ use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
+use Filament\Support\Enums\Alignment;
+use Filament\Support\Enums\Width;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +22,9 @@ final class PortfolioTableActions
      * @param  callable(Model): string  $modalHeading
      * @param  callable(Model): \Illuminate\Contracts\View\View|string  $modalContent
      * @param  callable(Model): string  $editUrl
+     * @param  string|null  $viewModalHeading  Static modal title (e.g. "View details")
+     * @param  Width|string|null  $viewModalWidth
+     * @param  string  $editActionLabel
      */
     public static function resourceGroup(
         string $resourceClass,
@@ -32,20 +37,26 @@ final class PortfolioTableActions
         string $deleteTitle,
         string $deleteText,
         bool $publishable = true,
+        ?string $viewModalHeading = null,
+        Width|string|null $viewModalWidth = null,
+        string $editActionLabel = 'Edit',
     ): ActionGroup {
         $actions = [
             Action::make('view')
-                ->label('View')
+                ->label($viewModalHeading ? 'View details' : 'View')
                 ->icon('heroicon-o-eye')
                 ->authorize($canView)
-                ->modalHeading($modalHeading)
+                ->modalHeading($viewModalHeading ?? $modalHeading)
                 ->modalContent($modalContent)
+                ->modalWidth($viewModalWidth ?? Width::Large)
                 ->modalSubmitAction(false)
                 ->modalCancelActionLabel('Close')
+                ->modalFooterActionsAlignment(Alignment::End)
                 ->modalFooterActions([
                     Action::make('openEditor')
-                        ->label('Edit')
+                        ->label($editActionLabel)
                         ->icon('heroicon-o-pencil-square')
+                        ->color('primary')
                         ->url($editUrl),
                 ]),
             EditAction::make()

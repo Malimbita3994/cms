@@ -54,7 +54,7 @@ final class AdminSkillForm
                                 )
                                     ->columnSpanFull(),
                                 PortfolioFormFields::richEditor('focus', 'Description', 'Describe this skill…')
-                                    ->helperText('Supports formatting, text alignment, lists, and links.'),
+                                    ->helperText('Use headings (Introduction, Key practices), short paragraphs, and bullet lists for readable detail pages.'),
                             ]),
                     ])
                     ->columnSpanFull(),

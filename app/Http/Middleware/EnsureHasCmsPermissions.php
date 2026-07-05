@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\User;
+use App\Support\CmsAuth;
 use App\Support\FilamentPermissions;
 use Closure;
 use Filament\Facades\Filament;
@@ -26,7 +27,7 @@ class EnsureHasCmsPermissions
                     $request->session()->invalidate();
                     $request->session()->regenerateToken();
 
-                    return redirect()->to(Filament::getLoginUrl())
+                    return redirect()->to(CmsAuth::loginUrl())
                         ->with('auth_alert', [
                             'type' => 'error',
                             'title' => 'No access',

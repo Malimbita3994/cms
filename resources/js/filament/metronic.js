@@ -208,3 +208,41 @@ document.addEventListener('livewire:navigated', () => {
 });
 
 document.addEventListener('livewire:init', bindUserAvatarUpdates);
+
+let workspaceShellPromise = null;
+
+const loadWorkspaceShell = () => {
+    if (!workspaceShellPromise) {
+        workspaceShellPromise = import('./workspace-shell.js');
+    }
+
+    return workspaceShellPromise;
+};
+
+const shouldLoadWorkspaceShell = (event) => {
+    if (event.type === 'keydown') {
+        return (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k';
+    }
+
+    return Boolean(event.target?.closest?.('.saas-topbar-bell, .saas-topbar-search__input'));
+};
+
+const scheduleWorkspaceShell = () => {
+    const run = () => loadWorkspaceShell();
+
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(run, { timeout: 3000 });
+    } else {
+        window.setTimeout(run, 2000);
+    }
+};
+
+['keydown', 'click', 'focusin'].forEach((type) => {
+    document.addEventListener(type, (event) => {
+        if (shouldLoadWorkspaceShell(event)) {
+            loadWorkspaceShell();
+        }
+    }, { capture: true, passive: true });
+});
+
+scheduleWorkspaceShell();

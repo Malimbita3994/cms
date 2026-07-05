@@ -3,19 +3,19 @@
 @import url('https://fonts.bunny.net/css?family=ibm-plex-sans:400,500,600,700&display=swap');
 
 :root {
-    --auth-bg: #07080a;
-    --auth-bg-panel: #0c0d10;
-    --auth-surface: #14161c;
-    --auth-surface-hover: #181b22;
-    --auth-border: #252a35;
-    --auth-border-strong: #323845;
+    --auth-bg: #120c09;
+    --auth-bg-panel: #1a100c;
+    --auth-surface: #1c120d;
+    --auth-surface-hover: #2a1c15;
+    --auth-border: #3d2a20;
+    --auth-border-strong: #4a3326;
     --auth-text: #f4f4f5;
-    --auth-muted: #8b919e;
-    --auth-muted-dim: #5c6370;
+    --auth-muted: #a89488;
+    --auth-muted-dim: #6b5a50;
     --auth-accent: #f59e0b;
     --auth-accent-mid: #ea580c;
     --auth-accent-deep: #c2410c;
-    --auth-input-bg: #1a1d24;
+    --auth-input-bg: #1a100c;
     --auth-gradient: linear-gradient(90deg, #c2410c 0%, #ea580c 38%, #f59e0b 72%, #fbbf24 100%);
     --auth-gradient-hover: linear-gradient(90deg, #9a3412 0%, #c2410c 38%, #ea580c 72%, #f59e0b 100%);
     --auth-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
@@ -27,6 +27,10 @@
 }
 
 /* —— Shell —— */
+body.fi-body.fi-panel-admin {
+    background-color: var(--auth-bg) !important;
+}
+
 .mb-auth-shell {
     display: grid;
     min-height: 100vh;
@@ -260,7 +264,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212, 165, 116, 0.06), transparent 60%);
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(186, 72, 17, 0.08), transparent 60%);
 }
 
 .mb-auth-form-wrap {

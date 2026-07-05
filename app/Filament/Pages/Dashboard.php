@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Filament\Support\NavigationGroups;
 use App\Models\User;
 use App\Support\DashboardMetrics;
+use App\Support\CmsAuth;
 use App\Support\FilamentPermissions;
 use Filament\Facades\Filament;
 use Filament\Pages\Dashboard as BaseDashboard;
@@ -34,7 +35,7 @@ class Dashboard extends BaseDashboard
                 'text' => 'Your account has no permissions assigned. Ask an administrator to assign you a role.',
             ]);
 
-            $this->redirect(Filament::getLoginUrl(), navigate: false);
+            $this->redirect(CmsAuth::loginUrl(), navigate: false);
 
             return;
         }

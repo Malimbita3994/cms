@@ -45,7 +45,7 @@ final class FilamentPermissions
             }
         }
 
-        return $panel->getLoginUrl();
+        return CmsAuth::loginUrl();
     }
 
     public static function userCan(string $permission): bool

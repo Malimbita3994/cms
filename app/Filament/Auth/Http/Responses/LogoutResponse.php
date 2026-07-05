@@ -2,8 +2,8 @@
 
 namespace App\Filament\Auth\Http\Responses;
 
+use App\Support\CmsAuth;
 use Filament\Auth\Http\Responses\Contracts\LogoutResponse as Responsable;
-use Filament\Facades\Filament;
 use Illuminate\Http\RedirectResponse;
 use Livewire\Features\SupportRedirects\Redirector;
 
@@ -17,8 +17,6 @@ class LogoutResponse implements Responsable
             'text' => 'You have been logged out safely. See you next time.',
         ]);
 
-        return redirect()->to(
-            Filament::hasLogin() ? Filament::getLoginUrl() : Filament::getUrl(),
-        );
+        return redirect()->to(CmsAuth::loginUrl());
     }
 }

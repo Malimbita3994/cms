@@ -244,7 +244,12 @@ class PublicContentController extends Controller
             return $image;
         }
 
-        return rtrim((string) config('app.url'), '/').'/'.ltrim($image, '/');
+        $siteBase = rtrim((string) config('services.portfolio.asset_base_url'), '/');
+        if ($siteBase !== '') {
+            return $siteBase.'/'.ltrim($image, '/');
+        }
+
+        return rtrim((string) config('app.url'), '/').'/media/'.ltrim($image, '/');
     }
 
     /**

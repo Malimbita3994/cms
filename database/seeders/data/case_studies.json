@@ -1,14 +1,6 @@
 [
     {
         "sort_order": 0,
-        "title": "e-Elimu Portal",
-        "desc": "Centralized education platform integrating scholarships, verification workflows, and graduation clearance operations.",
-        "impact": "Improved nationwide service delivery and reduced processing time for students.",
-        "stack": ["Laravel", "PostgreSQL", "REST API", "Docker"],
-        "is_published": true
-    },
-    {
-        "sort_order": 1,
         "title": "TCMS",
         "desc": "Teacher College Management System for admissions, finance, timetabling, and institutional reporting.",
         "impact": "Automated core academic and administrative workflows across institutions.",
@@ -16,7 +8,7 @@
         "is_published": true
     },
     {
-        "sort_order": 2,
+        "sort_order": 1,
         "title": "FDC-MIS",
         "desc": "Monitoring and evaluation system for planning, execution tracking, and KPI-based performance review.",
         "impact": "Enabled data-driven planning with executive-level reporting visibility.",

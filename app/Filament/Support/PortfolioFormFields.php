@@ -30,6 +30,7 @@ final class PortfolioFormFields
     {
         return [
             ['bold', 'italic', 'underline', 'link'],
+            ['h2', 'h3'],
             [
                 ToolbarButtonGroup::make('Alignment', [
                     'alignStart',

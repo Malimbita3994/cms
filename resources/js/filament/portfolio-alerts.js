@@ -1,5 +1,3 @@
-import Swal from 'sweetalert2';
-
 const swalDefaults = {
     background: '#12151c',
     color: '#f4f4f5',
@@ -12,8 +10,20 @@ const swalDefaults = {
     },
 };
 
-const confirmDialog = (options) =>
-    Swal.fire({
+let swalModulePromise = null;
+
+const getSwal = async () => {
+    if (!swalModulePromise) {
+        swalModulePromise = import('sweetalert2').then(({ default: Swal }) => Swal);
+    }
+
+    return swalModulePromise;
+};
+
+const confirmDialog = async (options) => {
+    const Swal = await getSwal();
+
+    return Swal.fire({
         ...swalDefaults,
         icon: 'warning',
         showCancelButton: true,
@@ -23,6 +33,7 @@ const confirmDialog = (options) =>
         focusCancel: true,
         ...options,
     });
+};
 
 document.addEventListener(
     'click',
@@ -55,13 +66,57 @@ document.addEventListener(
     true,
 );
 
-const bindLivewireAlerts = () => {
-    if (!window.Livewire) {
+const normalizePayload = (payload) => {
+    if (Array.isArray(payload)) {
+        return payload[0] ?? {};
+    }
+
+    return payload ?? {};
+};
+
+const showSessionFlashAlert = async (elementId) => {
+    const element = document.getElementById(elementId);
+
+    if (!element?.textContent) {
         return;
     }
 
-    Livewire.on('swal-loading', (payload) => {
+    let data;
+
+    try {
+        data = JSON.parse(element.textContent);
+    } catch {
+        return;
+    }
+
+    const Swal = await getSwal();
+
+    Swal.close();
+
+    Swal.fire({
+        ...swalDefaults,
+        icon: data.type ?? 'success',
+        title: data.title ?? 'Done',
+        text: data.text ?? undefined,
+        timer: (data.type ?? 'success') === 'success' ? 2800 : undefined,
+        showConfirmButton: (data.type ?? 'success') !== 'success',
+    });
+
+    element.remove();
+};
+
+let livewireAlertsBound = false;
+
+const bindLivewireAlerts = () => {
+    if (!window.Livewire || livewireAlertsBound) {
+        return;
+    }
+
+    livewireAlertsBound = true;
+
+    Livewire.on('swal-loading', async (payload) => {
         const data = normalizePayload(payload);
+        const Swal = await getSwal();
 
         Swal.fire({
             ...swalDefaults,
@@ -74,8 +129,9 @@ const bindLivewireAlerts = () => {
         });
     });
 
-    Livewire.on('swal', (payload) => {
+    Livewire.on('swal', async (payload) => {
         const data = normalizePayload(payload);
+        const Swal = await getSwal();
 
         if (data.closeLoading !== false) {
             Swal.close();
@@ -92,46 +148,12 @@ const bindLivewireAlerts = () => {
     });
 };
 
-const normalizePayload = (payload) => {
-    if (Array.isArray(payload)) {
-        return payload[0] ?? {};
+const initPortfolioAlerts = async () => {
+    if (document.getElementById('auth-flash-data') || document.getElementById('swal-flash-data')) {
+        await showSessionFlashAlert('auth-flash-data');
+        await showSessionFlashAlert('swal-flash-data');
     }
 
-    return payload ?? {};
-};
-
-const showSessionFlashAlert = (elementId) => {
-    const element = document.getElementById(elementId);
-
-    if (!element?.textContent) {
-        return;
-    }
-
-    let data;
-
-    try {
-        data = JSON.parse(element.textContent);
-    } catch {
-        return;
-    }
-
-    Swal.close();
-
-    Swal.fire({
-        ...swalDefaults,
-        icon: data.type ?? 'success',
-        title: data.title ?? 'Done',
-        text: data.text ?? undefined,
-        timer: (data.type ?? 'success') === 'success' ? 2800 : undefined,
-        showConfirmButton: (data.type ?? 'success') !== 'success',
-    });
-
-    element.remove();
-};
-
-const initPortfolioAlerts = () => {
-    showSessionFlashAlert('auth-flash-data');
-    showSessionFlashAlert('swal-flash-data');
     bindLivewireAlerts();
 };
 
@@ -170,7 +192,9 @@ window.portfolioConfirmSave = async (livewire, options = {}) => {
 };
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPortfolioAlerts, { once: true });
+    document.addEventListener('DOMContentLoaded', () => {
+        initPortfolioAlerts();
+    }, { once: true });
 } else {
     initPortfolioAlerts();
 }
@@ -179,7 +203,10 @@ document.addEventListener('livewire:init', () => {
     bindLivewireAlerts();
 
     Livewire.hook('request', ({ fail }) => {
-        fail(() => Swal.close());
+        fail(async () => {
+            const Swal = await getSwal();
+            Swal.close();
+        });
     });
 });
 

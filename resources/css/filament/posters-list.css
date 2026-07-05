@@ -1,0 +1,328 @@
+/* Posters / News list - table and control bar polish */
+
+.posters-list-page {
+    --pl-border: #243044;
+    --pl-panel: #101827;
+    --pl-card: #151e2e;
+    --pl-text: #f8fafc;
+    --pl-muted: #94a3b8;
+}
+
+.posters-list-page .fi-page-main {
+    gap: 1.25rem;
+}
+
+.posters-list-page .fi-header {
+    margin-bottom: 0.25rem;
+}
+
+.posters-list-page .fi-header-heading {
+    font-size: 1.55rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.03em !important;
+}
+
+.posters-list-page .fi-header-subheading {
+    margin-top: 0.35rem !important;
+    font-size: 0.86rem !important;
+    color: var(--pl-muted) !important;
+    max-width: 44rem;
+}
+
+.posters-list-page .fi-header-actions .fi-btn {
+    border-radius: 0.55rem !important;
+    min-height: 2.35rem;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+}
+
+.posters-list-page .fi-header-actions .fi-btn-color-gray {
+    border-color: var(--pl-border) !important;
+    background: var(--pl-card) !important;
+}
+
+.posters-list-page .fi-ta-ctn {
+    border-radius: 0.85rem !important;
+    border-color: var(--pl-border) !important;
+    background: var(--pl-panel) !important;
+    overflow: hidden;
+}
+
+.posters-list-page .fi-ta-header-ctn {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.65rem 0.85rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--pl-border);
+    background: rgba(8, 13, 23, 0.45);
+}
+
+.posters-list-page .fi-ta-header-toolbar {
+    order: 1;
+    flex: 1 1 16rem;
+    min-width: 14rem;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+.posters-list-page .fi-ta-header-toolbar > .fi-ta-actions {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.posters-list-page .fi-ta-search-field {
+    flex: 1 1 auto;
+    max-width: none;
+    min-width: 12rem;
+}
+
+.posters-list-page .fi-ta-search-field .fi-input-wrp {
+    border-radius: 0.55rem !important;
+    border-color: var(--pl-border) !important;
+    background: var(--pl-card) !important;
+    min-height: 2.25rem;
+}
+
+.posters-list-page .fi-ta-header-toolbar .fi-btn {
+    border-radius: 0.55rem !important;
+    min-height: 2.25rem;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    white-space: nowrap;
+}
+
+.posters-list-page .fi-ta-filters-above-content-ctn {
+    order: 2;
+    flex: 2 1 28rem;
+    display: block !important;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+.posters-list-page .fi-ta-filters {
+    width: 100%;
+}
+
+.posters-list-page .fi-ta-filters-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0;
+    min-height: 0;
+}
+
+.posters-list-page .fi-ta-filters-heading {
+    display: none;
+}
+
+.posters-list-page .fi-ta-filters-header .fi-link {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    color: #f87171 !important;
+    text-decoration: none !important;
+}
+
+.posters-list-page .fi-ta-filters-header .fi-link:hover {
+    color: #fca5a5 !important;
+}
+
+.posters-list-page .fi-ta-filters > form,
+.posters-list-page .fi-ta-filters form {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.55rem;
+    align-items: end;
+}
+
+.posters-list-page .fi-ta-filters .fi-fo-field-wrp-label span {
+    font-size: 0.68rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #64748b !important;
+}
+
+.posters-list-page .fi-ta-filters .fi-input-wrp,
+.posters-list-page .fi-ta-filters .fi-select-input {
+    border-radius: 0.5rem !important;
+    border-color: var(--pl-border) !important;
+    background: var(--pl-card) !important;
+    min-height: 2.25rem;
+    font-size: 0.8rem !important;
+}
+
+.posters-list-page .fi-ta-filters-actions-ctn {
+    display: none;
+}
+
+.posters-list-page .fi-ta-content-ctn {
+    overflow-x: auto;
+}
+
+.posters-list-page .fi-ta-table {
+    width: 100%;
+    min-width: 56rem;
+    table-layout: auto;
+}
+
+.posters-list-page .fi-ta-header-cell {
+    padding: 0.65rem 0.85rem !important;
+    font-size: 0.68rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #64748b !important;
+    background: #121a28 !important;
+    white-space: nowrap;
+}
+
+.posters-list-page .fi-ta-row > td {
+    padding: 0.7rem 0.85rem !important;
+    vertical-align: middle !important;
+    border-color: rgba(36, 48, 68, 0.7) !important;
+    background: var(--pl-panel);
+}
+
+.posters-list-page .fi-ta-row:hover > td {
+    background: rgba(37, 99, 235, 0.06) !important;
+}
+
+.posters-list-page .fi-ta-image {
+    display: flex;
+    justify-content: center;
+}
+
+.poster-table-preview-img,
+.posters-list-page .fi-ta-image img {
+    width: 4.5rem !important;
+    height: 3rem !important;
+    border-radius: 0.5rem !important;
+    object-fit: cover !important;
+    border: 1px solid var(--pl-border);
+    background: #0f172a;
+}
+
+.posters-list-page .fi-ta-text-item-label {
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    color: var(--pl-text) !important;
+    line-height: 1.35 !important;
+}
+
+.posters-list-page .fi-ta-text-item-description {
+    margin-top: 0.15rem !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.72rem !important;
+    color: #64748b !important;
+    line-height: 1.3 !important;
+}
+
+.poster-category-badge {
+    display: inline-flex;
+    padding: 0.22rem 0.55rem;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.poster-category-badge--news { color: #93c5fd; background: rgba(37, 99, 235, 0.14); border-color: rgba(37, 99, 235, 0.25); }
+.poster-category-badge--updates { color: #fdba74; background: rgba(249, 115, 22, 0.14); border-color: rgba(249, 115, 22, 0.25); }
+.poster-category-badge--entertainment { color: #e879f9; background: rgba(217, 70, 239, 0.14); border-color: rgba(217, 70, 239, 0.25); }
+.poster-category-badge--blog { color: #6ee7b7; background: rgba(16, 185, 129, 0.14); border-color: rgba(16, 185, 129, 0.25); }
+.poster-category-badge--announcements { color: #fcd34d; background: rgba(245, 158, 11, 0.14); border-color: rgba(245, 158, 11, 0.25); }
+.poster-category-badge--general { color: #c4b5fd; background: rgba(139, 92, 246, 0.14); border-color: rgba(139, 92, 246, 0.25); }
+
+.poster-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.poster-status__dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+}
+
+.poster-status--live { color: #86efac; background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.22); }
+.poster-status--live .poster-status__dot { background: #22c55e; }
+.poster-status--draft { color: #9ca3af; background: rgba(107, 114, 128, 0.1); border-color: rgba(107, 114, 128, 0.2); }
+.poster-status--draft .poster-status__dot { background: #6b7280; }
+
+.poster-date {
+    display: flex;
+    flex-direction: column;
+    gap: 0.08rem;
+    white-space: nowrap;
+}
+
+.poster-date__day {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.poster-date__time {
+    font-size: 0.7rem;
+    color: #64748b;
+}
+
+.poster-date--empty {
+    color: #64748b;
+}
+
+.posters-list-page .fi-ta-icon svg {
+    width: 1rem !important;
+    height: 1rem !important;
+}
+
+.posters-list-page .fi-ta-actions .fi-icon-btn {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--pl-border);
+    border-radius: 0.5rem;
+    background: var(--pl-card);
+}
+
+.posters-list-page .fi-ta-pagination {
+    padding: 0.7rem 1rem;
+    border-top: 1px solid var(--pl-border);
+    background: rgba(8, 13, 23, 0.35);
+    font-size: 0.8rem;
+}
+
+.posters-list-page .fi-pagination-item-btn.fi-active {
+    background: #f97316 !important;
+    color: #1c1917 !important;
+    border: none !important;
+}
+
+@media (max-width: 1100px) {
+    .posters-list-page .fi-ta-filters > form,
+    .posters-list-page .fi-ta-filters form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .posters-list-page .fi-ta-header-ctn {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .posters-list-page .fi-ta-filters > form,
+    .posters-list-page .fi-ta-filters form {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
